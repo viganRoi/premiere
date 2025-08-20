@@ -1,0 +1,96 @@
+.rent-class {
+  fill: rgb(106 12 42 / 57%);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.4s ease 0s;
+  opacity: 1;
+  stroke: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  stroke-width: 1px;
+  outline: none;
+  width: 100%;
+}
+
+.parking-reserved {
+  fill: #ff7b00;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.4s ease 0s;
+  opacity: 0.5;
+  stroke: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  stroke-width: 1px;
+  outline: none;
+  width: 100%;
+}
+
+.available {
+  fill: #4eb8445d;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease 0s;
+  opacity: 1;
+  stroke: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  stroke-width: 1px;
+  outline: none;
+  width: 100%;
+}
+
+.filtered {
+  fill: #4eb84441;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.4s ease 0s;
+  opacity: 1;
+  stroke: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* stroke-width: 1px; */
+  outline: none;
+  width: 100%;
+}
+
+.filtered:hover {
+  fill: #4eb844a4;
+  opacity: 1;
+}
+
+.available:hover {
+  fill: #4eb844a4;
+  opacity: 1;
+}
+
+.sold {
+  fill: rgb(106 12 42 / 57%);
+  opacity: 1;
+  stroke-width: 1px;
+  stroke: white;
+}
+
+/* .st3 {
+  fill: transparent;
+  stroke-width: 1px;
+  stroke: white;
+} */
+.disabled{
+  fill: #04490600;
+  outline: none;
+  transition: all 0.25s ease 0s;
+  opacity: 0;
+  stroke: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  stroke-width: 1px;
+  outline: none;
+  width: 100%;
+}
+
