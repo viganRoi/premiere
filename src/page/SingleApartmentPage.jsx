@@ -3,7 +3,15 @@ import React, { useEffect } from "react";
 import Gallery from "../components/Gallery";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL, homepage, imagePath, mainUrl, objectImageUrl, planmetricImageUrl } from "../utils/consts";
+import {
+  BASE_URL,
+  homepage,
+  imagePath,
+  mainUrl,
+  objectImageUrl,
+  pdfPath,
+  planmetricImageUrl,
+} from "../utils/consts";
 
 const SingleApartmentPage = () => {
   const navigate = useNavigate();
@@ -12,8 +20,9 @@ const SingleApartmentPage = () => {
   const [data, setData] = React.useState(null);
 
   useEffect(() => {
-    if(id) {
-      axios.get(`${BASE_URL}/api/apartment/getbyid?id=${id}`)
+    if (id) {
+      axios
+        .get(`${BASE_URL}/api/apartment/getbyid?id=${id}`)
         .then((response) => {
           setData(response.data);
         })
@@ -84,7 +93,7 @@ const SingleApartmentPage = () => {
               color: "#6a0c2a",
             },
           }}
-          onClick={() => (navigate(-1))}
+          onClick={() => navigate(-1)}
         >
           KTHEHU PAS
         </Button>
@@ -100,14 +109,12 @@ const SingleApartmentPage = () => {
         }}
       >
         <Box sx={{ display: "flex", flex: "6" }}>
-          <img 
-          style={{ width: "100%",
-            height: "100%",
-            objectFit: "contain",
-           }} 
-          // src="/projektet/images/plani.png" 
-          src={`${homepage}${planmetricImageUrl}${data.name}.png`}
-          alt="" />
+          <img
+            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            // src="/projektet/images/plani.png"
+            src={`${homepage}${planmetricImageUrl}${data.name}.png`}
+            alt=""
+          />
         </Box>
         <Box
           sx={{
@@ -128,6 +135,9 @@ const SingleApartmentPage = () => {
             }}
           >
             <Button
+              onClick={() => {
+                window.open(`${pdfPath}${data?.pdfUrl}`);
+              }}
               sx={{
                 backgroundColor: "#f2ca94",
                 color: "#6a0c2a",
@@ -146,6 +156,9 @@ const SingleApartmentPage = () => {
               SHKARKO PDF
             </Button>
             <Button
+              onClick={() => {
+                window.open("https://premiereresidence-ks.com/na-kontaktoni");
+              }}
               sx={{
                 backgroundColor: "#6a0c2a",
                 color: "#f2ca94",
@@ -183,7 +196,11 @@ const SingleApartmentPage = () => {
               }}
               className="infokatror"
             >
-              <img style={{ width: "80px" }} src="/projektet/images/qelsi.png" alt="" />
+              <img
+                style={{ width: "80px" }}
+                src="/projektet/images/qelsi.png"
+                alt=""
+              />
               <Typography
                 sx={{
                   fontFamily: "Montserrat, Sans-serif",
@@ -253,7 +270,11 @@ const SingleApartmentPage = () => {
               }}
               className="infokatror"
             >
-              <img style={{ width: "80px" }} src="/projektet/images/terasa.png" alt="" />
+              <img
+                style={{ width: "80px" }}
+                src="/projektet/images/terasa.png"
+                alt=""
+              />
 
               <Typography
                 sx={{
@@ -297,7 +318,11 @@ const SingleApartmentPage = () => {
               }}
               className="infokatror"
             >
-              <img style={{ width: "80px" }} src="/projektet/images/qelsi.png" alt="" />
+              <img
+                style={{ width: "80px" }}
+                src="/projektet/images/qelsi.png"
+                alt=""
+              />
 
               <Typography
                 sx={{
@@ -330,7 +355,11 @@ const SingleApartmentPage = () => {
               }}
               className="infokatror"
             >
-              <img style={{ width: "80px" }} src="/projektet/images/kati.png" alt="" />
+              <img
+                style={{ width: "80px" }}
+                src="/projektet/images/kati.png"
+                alt=""
+              />
 
               <Typography
                 sx={{
@@ -363,7 +392,11 @@ const SingleApartmentPage = () => {
               }}
               className="infokatror"
             >
-              <img style={{ width: "80px" }} src="/projektet/images/Tipi.png" alt="" />
+              <img
+                style={{ width: "80px" }}
+                src="/projektet/images/Tipi.png"
+                alt=""
+              />
 
               <Typography
                 sx={{
@@ -432,7 +465,11 @@ const SingleApartmentPage = () => {
           sx={{ display: "flex", flexDirection: isSmallDev ? "column" : "row" }}
         >
           <Box sx={{ display: "flex", flex: 5 }}>
-            <img style={{ width: "100%" }} src={`${mainUrl}${planmetricImageUrl}${data.imageUrl}`} alt="" />
+            <img
+              style={{ width: "100%" }}
+              src={`${mainUrl}${planmetricImageUrl}${data.imageUrl}`}
+              alt=""
+            />
           </Box>
 
           <Box sx={{ display: "flex", flex: 7, padding: "15px" }}>

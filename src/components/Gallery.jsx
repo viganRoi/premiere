@@ -22,27 +22,27 @@ const Gallery = () => {
 const itemData = [
   {
     img: "/images/f1.jpg",
-    title: "Breakfast",
+    title: "apartment1",
   },
   {
     img: "/images/f2.jpg",
-    title: "Burger",
+    title: "apartment2",
   },
   {
     img: "/images/f3.jpg",
-    title: "Camera",
+    title: "apartment3",
   },
   {
-    img: "/images/f1.jpg",
-    title: "Coffee",
+    img: "/images/f4.jpg",
+    title: "apartment4",
   },
   {
-    img: "/images/f2.jpg",
-    title: "Hats",
+    img: "/images/f5.jpg",
+    title: "apartment5",
   },
   {
-    img: "/images/f3.jpg",
-    title: "Honey",
+    img: "/images/f6.jpg",
+    title: "apartment6",
   },
 ];
 

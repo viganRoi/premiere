@@ -34,7 +34,7 @@ const Building = () => {
   const dispatch = useDispatch();
   const [squareRange, setSquareRange] = useState([minSquare, maxSquare]);
   const [floorRange, setFloorRange] = useState([minFloor, maxFloor]);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [roomRange, setRoomRange] = useState(["all"]);
   // const [roomFilter, setRoomFilter] = useState(['all']);
   const isSmallDev = useMediaQuery("(max-width: 768px)");
@@ -228,7 +228,7 @@ const Building = () => {
               height: index === currentIndex ? getSvgHeight() : "0px",
               opacity: currentIndex === index ? 1 : 0,
               transition: "opacity 0.1s ease-in-out",
-              width: "100%",
+              width: isSmallDev ? "300%" : "100%",
               display: "flex",
               justifyContent: "center",
               overflow: "auto",
@@ -320,9 +320,9 @@ const Building = () => {
           onClick={() => setIsVisible((prev) => !prev)}
           sx={{
             position: "fixed",
-            top: isSmallDev ? "50px" : isVisible ? "150px" : "150px",
-            right: "10px",
-            width: isSmallDev ? "100%" : "15%",
+            top: isSmallDev ? "100px" : isVisible ? "150px" : "150px",
+            right: isSmallDev ? "0px" : "10px",
+            width: isSmallDev ? "30%" : "15%",
             fontSize: "15px",
             borderRadius: "30px",
             backgroundColor: "#782137", // Keeping your original colors
@@ -341,22 +341,41 @@ const Building = () => {
         <Box
           sx={{
             position: "fixed",
-            right: "10px",
-            width: "25%",
+            right: isSmallDev ? "0" : "10px",
+            width: isSmallDev ? "100%" : "25%",
             backgroundColor: "#782137", // Keeping your original colors
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            justifyContent: isSmallDev ? "space-around" : "space-between",
             alignItems: "center",
             padding: "20px 50px",
             borderRadius: "10px",
             height: isSmallDev ? "100%" : "70%",
-            top: "150px",
+            top: isSmallDev ? "0px" : "150px",
             transform: isVisible ? "translateY(0)" : "translateY(150%)",
             transition: "transform 0.5s right",
             zIndex: 999,
           }}
         >
+          <Box sx={{ position: "absolute", right: "0px", top: "0px" }}>
+            <Button
+              onClick={() => setIsVisible(!isVisible)}
+              sx={{
+                color: "white",
+                height: "35px",
+                padding: "0",
+                minWidth: "35px",
+                borderRadius: "0px",
+                borderBottomLeftRadius: "10px",
+
+                bgcolor: "white",
+                color: "black",
+                fontSize: "12px",
+              }}
+            >
+              X
+            </Button>
+          </Box>
           <Box
             sx={{
               display: "flex",
