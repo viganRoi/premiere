@@ -25,7 +25,7 @@ function MainLayout() {
       <Routes>
         <Route path=":id" element={<Building />} />
         <Route path="/apartment/:id" element={<SingleApartmentPage />} />
-        <Route path="/svg-extrator" element={<SvgExtractor />} />
+        {/* <Route path="/svg-extrator" element={<SvgExtractor />} /> */}
         {/* <Route
             path="/admin/*"
             element={

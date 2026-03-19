@@ -46,7 +46,7 @@ const ContextMenu = ({ menu, setMenu }) => {
       )
     }
   }, [status]);
-  // if(!isAuthorized()) return
+  if(!isAuthorized()) return
 
   return (
     <Popover
