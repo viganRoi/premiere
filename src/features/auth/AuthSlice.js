@@ -47,6 +47,7 @@ export const tokenConfig = () => {
 }
 
 export const isAuthorized = () => {
+    const secretKey = import.meta.env.VITE_ENCRYPTION_SECRET_KEY;
   let session = localStorage.getItem('session')
   if(session === null || session?.length < 1){
     return false
@@ -54,7 +55,7 @@ export const isAuthorized = () => {
   if(session?.length > 1){
       session = JSON.parse(CryptoJS.AES.decrypt(
         session,
-        '894HUNFJUIG43HUN'
+        secretKey
       ).toString(CryptoJS.enc.Utf8));
     }
     

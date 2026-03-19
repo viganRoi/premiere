@@ -68,7 +68,7 @@ export const AuthProvider = ({ children, hide = false }) => {
           setSession(JSON.stringify(response.data));
           setIsLoggedIn(true);
           setRole(response.data.role);
-          navigate('/admin/dashboard');
+          navigate('/l1');
         }
       }).catch((e) => {
         if (e.response?.status === 408 && e.response?.data === ('500err')) {
@@ -246,14 +246,14 @@ export const AuthProvider = ({ children, hide = false }) => {
   if ('neterr' === isLoggedIn && hide === false) {
     return (
       <>
-        <Typography textAlign={'center'} mt={1}>Dream Lake</Typography>
+        <Typography textAlign={'center'} mt={1}>Premiere Residence</Typography>
         <Box
           sx={{
             height: "100vh",
             display: "flex",
             justifyContent: "center",
             ml: { xs: "20%", md: "10%", lg: "2%", pb: '5%' },
-            flexDirection: "column",
+            flexDirection: "column",x
           }}
         >
           <img
