@@ -72,6 +72,9 @@ const Navbar = () => {
 
       {/* Contact Button */}
       <Button
+        onClick={() => {
+          window.open("https://premiereresidence-ks.com/na-kontaktoni");
+        }}
         variant="outlined"
         sx={{
           fontSize: isMobile ? "10px" : "15px",
@@ -146,7 +149,8 @@ const Navbar = () => {
                     onClick={() => {
                       const route = text.split(" ")[1].toLowerCase();
                       naviate(`/${route}`);
-                    }}>
+                    }}
+                  >
                     {text}
                   </ListItemButton>
                 </ListItem>
