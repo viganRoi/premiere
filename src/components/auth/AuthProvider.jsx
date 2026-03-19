@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../utils/consts';
 import CryptoJS, { SHA1 } from 'crypto-js';
 import { toast } from 'react-toastify';
+import { BiHide, BiShow } from 'react-icons/bi';
+import './login.css'
 
 const loginUrl = `${BASE_URL}/api/auth/login`;
 const authorizeUrl = `${BASE_URL}/api/auth/authorize`;
@@ -17,11 +19,14 @@ export const AuthProvider = ({ children, hide = false }) => {
   const navigate = useNavigate();
   const secretKey = import.meta.env.VITE_ENCRYPTION_SECRET_KEY;
   const url = useLocation().pathname;
+  const [showPassword, setShowPassword] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [role, setRole] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [form, setForm] = useState({ username: '', password: '', rememberMe: false });
+  const [message, setMessage] = useState('');
 
   const sendAuthRequest = (url, method, data) => {
     return axios({
@@ -143,6 +148,21 @@ export const AuthProvider = ({ children, hide = false }) => {
     authorize();
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm((p) => ({ ...p, [name]: type === 'checkbox' ? checked : value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMessage('');
+    if (!form.username || !form.password) {
+      setMessage('Please enter username and password.');
+      return;
+    }
+    login({ username: form.username, password: form.password, rememberMe: form.rememberMe });
+  };
+
   const getRole = () => {
     const session = getSession();
     if (session) {
@@ -260,149 +280,63 @@ export const AuthProvider = ({ children, hide = false }) => {
 
   if (!isLoggedIn && url !== '/login' && hide === false) {
     return (
-      <Box
-        sx={{
-          height: "100vh",
-          width: '100%',
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: 'center',
-          backgroundColor: '#b2b9b2',
-        }}
-      >
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: 'center',
-          padding: '50px',
-          borderRadius: '20px',
-          backgroundColor: '#000',
-        }}>
-        <img
-          src="\assets\images\brand\logo.png"
-          alt="logo"
-          style={{
-            color: '#bbb',
-            height: "100px",
-          }}
-        />
-        {/* <Typography
-          // onClick={() => navigate('/login')}
-          variant="h4"
-          sx={{
-            color: 'var(--brand-color)',
-            ":hover": { filter: "drop-shadow(0 2px 3.5rem black)" },
-          }}
-        >
-          Please login to access this page! Kyqu tani
-        </Typography> */}
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          login({ username, password });
-        }}>
-          <FormControl sx={{ mt: 10, }}>
-            <Grid container spacing={3} width={"400px"}> 
-              <Grid item xs={12} sx={{
-                width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-                <TextField
-                  size="small"
-                  label="Username"
-                  fullWidth
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  sx={{
-                    backgroundColor: 'transparent',
-                    color: 'red',
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'green',
-                        borderRadius: '20px'
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'green',
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: 'green',
-                        borderWidth: '1px',
-                        color: '#fff'
-                      },
-                      '& input': {
-                        color: '#bbb', // Text color
-                      },
-                    },
-                    '& .MuiInputLabel-root': {
-                      color: 'green',
-                      '&.Mui-focused': {
-                        color: 'green',
-                      },
-                    },
-                  }}
+      <div className="login-wrapper">
+        <form onSubmit={handleSubmit} className="login-card">
+          <div className="form-grid">
+            <div className="field">
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                value={form.username}
+                onChange={handleChange}
+                className="input"
+                required
+              />
+            </div>
+
+            <div className="field">
+              <div className="label-row">
+                <label>Password</label>
+                <a className="forgot-link">Keni harruar fjalëkalimin?</a>
+              </div>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  className="input"
+                  required
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  size="small"
-                  label="Password"
-                  fullWidth
-                  type='password'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  sx={{
-                    backgroundColor: 'transparent',
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: 'green',
-                        borderRadius: '20px'
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'green',
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: 'green',
-                        borderWidth: '1px',
-                        color: '#fff'
-                      },
-                    },
-                    '& input': {
-                      color: '#bbb', // Text color
-                    },
-                    '& .MuiInputLabel-root': {
-                      color: 'green',
-                      '&.Mui-focused': {
-                        color: 'green',
-                      },
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} sx={{
-                width: '100%',
-                display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'flex-end'
-              }}>
-                <Button type='submit' variant='contained' sx={{
-                  backgroundColor: 'var(--green)',
-                  color: '#000',
-                  borderRadius: '20px',
-                  fontSize: '14px',
-                  textTransform: 'capitalize',
-                  ':hover': {
-                    backgroundColor: 'var(--brand-color)'
-                  }
-                }}>Login</Button>
-              </Grid>
-            </Grid>
-          </FormControl>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="toggle-visibility"
+                >
+                  {showPassword ? <BiHide /> : <BiShow />}
+                </button>
+              </div>
+            </div>
+
+            <div className="checkbox-row">
+              <input
+                name="rememberMe"
+                type="checkbox"
+                checked={form.rememberMe}
+                onChange={handleChange}
+              />
+              <label className="checkbox-label">Më kujto</label>
+            </div>
+
+            <button type="submit" className="submit-btn">
+              Sign in
+            </button>
+
+            {message && <p className="error-msg">{message}</p>}
+          </div>
         </form>
-        </Box>
-      </Box>
+      </div>
     );
   }
 
