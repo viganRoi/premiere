@@ -5,6 +5,7 @@ import SingleApartmentPage from "./page/SingleApartmentPage";
 import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import SvgExtractor from "./page/svg/SvgExtractor";
+import { AuthProvider } from "./components/auth/AuthProvider";
 
 function App() {
   return (
@@ -25,15 +26,15 @@ function MainLayout() {
       <Routes>
         <Route path=":id" element={<Building />} />
         <Route path="/apartment/:id" element={<SingleApartmentPage />} />
-        <Route path="/svg-extrator" element={<SvgExtractor />} />
-        {/* <Route
+        {/* <Route path="/svg-extrator" element={<SvgExtractor />} /> */}
+        <Route
             path="/admin/*"
             element={
               <AuthProvider>
-                <AdminPage />
+                {/* <AdminPage /> */}
               </AuthProvider>
             }
-          /> */}
+          />
       </Routes>
     </>
   );
