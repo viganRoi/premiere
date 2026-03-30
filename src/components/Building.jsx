@@ -73,7 +73,8 @@ const Building = () => {
 
   const handlePrevious = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + buildingData.length) % buildingData.length
+      (prevIndex) =>
+        (prevIndex - 1 + buildingData.length) % buildingData.length,
     );
   };
 
@@ -172,7 +173,7 @@ const Building = () => {
           borderRadius: "50px",
           left: "10px",
           position: "fixed",
-          top: "50%",
+          top: isSmallDev ? "65%" : "50%",
           cursor: "pointer",
           fill: "#f5cba7",
           fontSize: "35px",
@@ -199,7 +200,7 @@ const Building = () => {
           borderRadius: "50px",
           position: "fixed",
           right: "10px",
-          top: "50%",
+          top: isSmallDev ? "65%" : "50%",
           cursor: "pointer",
           fontSize: "35px",
           fill: "#f5cba7",
@@ -228,7 +229,7 @@ const Building = () => {
               height: index === currentIndex ? getSvgHeight() : "0px",
               opacity: currentIndex === index ? 1 : 0,
               transition: "opacity 0.1s ease-in-out",
-              width: isSmallDev ? "300%" : "100%",
+              width: isSmallDev ? "200%" : "100%",
               display: "flex",
               justifyContent: "center",
               overflow: "auto",
@@ -259,10 +260,10 @@ const Building = () => {
                           ? apartment.isSold
                             ? "sold"
                             : apartment.isReserved
-                            ? "reserved"
-                            : filterState
-                            ? "available"
-                            : "available"
+                              ? "reserved"
+                              : filterState
+                                ? "available"
+                                : "available"
                           : "disabled"
                       }
                       id={apartment.apartmentId}
@@ -320,8 +321,8 @@ const Building = () => {
           onClick={() => setIsVisible((prev) => !prev)}
           sx={{
             position: "fixed",
-            top: isSmallDev ? "100px" : isVisible ? "150px" : "150px",
-            right: isSmallDev ? "0px" : "10px",
+            top: isSmallDev ? "65%" : isVisible ? "150px" : "150px",
+            right: isSmallDev ? "35%" : "10px",
             width: isSmallDev ? "30%" : "15%",
             fontSize: "15px",
             borderRadius: "30px",

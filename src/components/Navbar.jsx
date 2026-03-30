@@ -52,6 +52,7 @@ const Navbar = () => {
           fontSize: isMobile ? "12px" : "18px",
           justifyContent: "center",
           alignItems: "center",
+          fontFamily: "montserrat, sans-serif",
         }}
       >
         <MenuIcon style={{ color: "#f5cba7", marginRight: "10px" }} />
@@ -65,6 +66,7 @@ const Navbar = () => {
           flexGrow: 1,
           textAlign: "center",
           fontSize: isMobile ? "18px" : "32px",
+          fontWeight: "bold",
         }}
       >
         LLAMELLA L1
@@ -78,11 +80,14 @@ const Navbar = () => {
         variant="outlined"
         sx={{
           fontSize: isMobile ? "10px" : "15px",
+          display: isMobile ? "none" : "flex",
           borderColor: "#f5cba7",
+          border: "2px solid #f5cba7",
+          borderRadius: "0px",
           color: "#f5cba7",
           ":hover": {
             backgroundColor: "#6a0c2a",
-            border: "1px solid #6a0c2a",
+            border: "2px solid #6a0c2a",
           },
         }}
       >
@@ -138,8 +143,10 @@ const Navbar = () => {
                       backgroundColor: "transparent",
                       color: "#f5cba7",
                       margin: "5px 10px",
+                      fontSize: isMobile ? "14px" : "15px",
                       border: "1px solid #f5cba7",
                       justifyContent: "center",
+                      fontFamily: "Montserrat, Sans-serif",
                       transition: "0.3s",
                       "&:hover": {
                         backgroundColor: "#f5cba7",
@@ -154,7 +161,7 @@ const Navbar = () => {
                     {text}
                   </ListItemButton>
                 </ListItem>
-              )
+              ),
             )}
           </List>
         </Box>

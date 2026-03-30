@@ -80,7 +80,7 @@ const SingleApartmentPage = () => {
         </Typography>
         <Button
           sx={{
-            fontFamily: "montserrat",
+            fontFamily: "Montserrat, Sans-serif",
             fontWeight: "400",
             color: "#f2ca94",
             border: "1px solid #f2ca94",
