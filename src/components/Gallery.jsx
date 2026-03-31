@@ -21,28 +21,20 @@ const Gallery = () => {
 
 const itemData = [
   {
-    img: "/images/f1.jpg",
+    img: "./images/f1.jpg",
     title: "apartment1",
   },
   {
-    img: "/images/f2.jpg",
+    img: "./images/f2.jpg",
     title: "apartment2",
   },
   {
-    img: "/images/f3.jpg",
+    img: "./images/f3.jpg",
     title: "apartment3",
   },
   {
-    img: "/images/f4.jpg",
+    img: "./images/f4.jpg",
     title: "apartment4",
-  },
-  {
-    img: "/images/f5.jpg",
-    title: "apartment5",
-  },
-  {
-    img: "/images/f6.jpg",
-    title: "apartment6",
   },
 ];
 
