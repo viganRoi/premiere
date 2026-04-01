@@ -12,12 +12,14 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate, useParams } from "react-router-dom";
 
+const buttonList = ["OBJEKTI L1", "OBJEKTI L2", "OBJEKTI I1", "OBJEKTI I2"];
 const Navbar = () => {
   const naviate = useNavigate();
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)"); // Detect mobile screen
+  const [selected, setSelected] = useState("");
 
   const toggleDrawer = (state) => (event) => {
     if (
@@ -69,7 +71,7 @@ const Navbar = () => {
           fontWeight: "bold",
         }}
       >
-        LLAMELLA L1
+        LLAMELLA {selected.toUpperCase()}
       </Typography>
 
       {/* Contact Button */}
@@ -134,35 +136,34 @@ const Navbar = () => {
             LISTA E OBJEKTEVE
           </Typography>
           <List>
-            {["OBJEKTI L1", "OBJEKTI L2", "OBJEKTI I1", "OBJEKTI I2"].map(
-              (text, index) => (
-                <ListItem key={index}>
-                  <ListItemButton
-                    sx={{
-                      textAlign: "center",
-                      backgroundColor: "transparent",
-                      color: "#f5cba7",
-                      margin: "5px 10px",
-                      fontSize: isMobile ? "14px" : "15px",
-                      border: "1px solid #f5cba7",
-                      justifyContent: "center",
-                      fontFamily: "Montserrat, Sans-serif",
-                      transition: "0.3s",
-                      "&:hover": {
-                        backgroundColor: "#f5cba7",
-                        color: "#6a0c2a",
-                      },
-                    }}
-                    onClick={() => {
-                      const route = text.split(" ")[1].toLowerCase();
-                      naviate(`/${route}`);
-                    }}
-                  >
-                    {text}
-                  </ListItemButton>
-                </ListItem>
-              ),
-            )}
+            {buttonList.map((text, index) => (
+              <ListItem key={index}>
+                <ListItemButton
+                  sx={{
+                    textAlign: "center",
+                    backgroundColor: "transparent",
+                    color: "#f5cba7",
+                    margin: "5px 10px",
+                    fontSize: isMobile ? "14px" : "15px",
+                    border: "1px solid #f5cba7",
+                    justifyContent: "center",
+                    fontFamily: "Montserrat, Sans-serif",
+                    transition: "0.3s",
+                    "&:hover": {
+                      backgroundColor: "#f5cba7",
+                      color: "#6a0c2a",
+                    },
+                  }}
+                  onClick={() => {
+                    const route = text.split(" ")[1].toLowerCase();
+                    setSelected(route);
+                    naviate(`/${route}`);
+                  }}
+                >
+                  {text}
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
         </Box>
       </Drawer>

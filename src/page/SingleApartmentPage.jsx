@@ -76,7 +76,7 @@ const SingleApartmentPage = () => {
             zIndex: "999",
           }}
         >
-          NDERTESA: L1
+          NDERTESA: {data?.apartmentNumber}
         </Typography>
         <Button
           sx={{
@@ -462,12 +462,17 @@ const SingleApartmentPage = () => {
         </Box>
 
         <Box
-          sx={{ display: "flex", flexDirection: isSmallDev ? "column" : "row" }}
+          sx={{
+            display: "flex",
+            flexDirection: isSmallDev ? "column" : "row",
+            gap: "30px",
+            marginTop: "30px",
+          }}
         >
           <Box sx={{ display: "flex", flex: 5 }}>
             <img
               style={{ width: "100%" }}
-              src={`${mainUrl}${planmetricImageUrl}${data.imageUrl}`}
+              src={`${mainUrl}${planmetricImageUrl}${data.image3dUrl}`}
               alt=""
             />
           </Box>
