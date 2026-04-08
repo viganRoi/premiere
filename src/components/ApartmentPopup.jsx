@@ -37,7 +37,7 @@ const ApartmentPopup = ({ apartment, mousePosition }) => {
               color: "#f5cba7",
             }}
           >
-            {apartment.title}
+            {apartment.name}
           </Typography>
         </Box>
 
